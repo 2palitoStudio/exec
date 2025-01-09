@@ -33,7 +33,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true; // Está no chão
+            isGrounded = true; // Está no chão ainda bem eim
+        }
+         if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Collided with Enemy!");
+
+            
+            Destroy(collision.gameObject); 
         }
     }
+ 
 }

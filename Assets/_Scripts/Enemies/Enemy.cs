@@ -1,5 +1,8 @@
 // Enemy.cs
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
@@ -7,7 +10,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public float MovementSpeed { get; set; } = 2f;
     public float Hp { get; set; } = 100;
     public bool IsDead { get; set; } = false;
-
+    [SerializeField] private int pointValue = 10; 
     protected EnemyMovement movement;
 
     public Transform target; // Target to follow
@@ -55,4 +58,14 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         Debug.Log($"{gameObject.name} detected the player: {player.name}");
         target = player.transform; // Set the player as the target
     }
+   
+
+
+   void OnDestroy()
+    {
+        
+        ScoreManager.instance.AddScore(pointValue);
+    }
+
+    
 }
